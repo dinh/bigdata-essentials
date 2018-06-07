@@ -707,30 +707,25 @@ Traverse left sub tree Post order, then Right sub tree post order, then root.
     PostOrder_Iterative(root) {
         if(root == null) return;
         Stack stack = Init the stack;
-        while(1) {
-            if(root != null) {
-                stack.push(root);
-                root = root.left;
-            } else {
-                if(!stack.isEmpty) {
-                    if(stack.top().right == null) {
-                        root = stack.pop()
-                        print root;
-                        if(root == stack.top().right) {
-                            print stack.pop();
-                        }
-                    }
+	stack.push(root);
+        
+	while(stack not empty) {
+		temp = stack.pop();
+		
+		if(temp.left not null and temp.right not null) {
+			print stack.pop();
+		} else {
+			if(temp.right != null) {
+				stack.push(temp.right);
+				temp.right = null;
+			}
 
-                } else {
-                    return;
-                }
-                if(!stack.isEmpty) {
-                    root = stack.top().right;
-                } else {
-                    root = null;
-                }
-            }
-        }
+			if(temp.left != null) {
+				stack.push(temp.left);
+				temp.left = null;
+			}
+		}
+      }
     }
 ```
 ![tree_traversal](https://cloud.githubusercontent.com/assets/8268939/22766646/b99f1ee0-ee44-11e6-894a-62c2ebb146a4.jpg)
